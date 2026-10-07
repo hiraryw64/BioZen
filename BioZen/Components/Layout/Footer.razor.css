@@ -1,0 +1,120 @@
+.bz-footer {
+    background: var(--foreground);
+    color: var(--background);
+}
+
+.bz-footer__banner {
+    width: 100%;
+    height: 14rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.bz-footer__banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.4;
+}
+
+.bz-footer__banner-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1.5rem;
+    text-align: center;
+}
+
+.bz-footer__quote {
+    font-size: 1.875rem;
+    font-style: italic;
+    color: var(--primary-foreground);
+    opacity: 0.9;
+}
+
+.bz-footer__content {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 2rem;
+}
+
+.bz-footer__grid {
+    display: grid;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 768px) {
+    .bz-footer__grid {
+        grid-template-columns: 1fr auto;
+        align-items: start;
+    }
+}
+
+.bz-footer__brand-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.bz-footer__brand-text {
+    font-size: 1.125rem;
+    letter-spacing: 0.02em;
+    color: var(--background);
+}
+
+.bz-footer__eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: 1.25rem;
+}
+
+.bz-footer__brand .bz-footer__eyebrow {
+    margin-bottom: 0.75rem;
+}
+
+.bz-footer__blurb {
+    font-size: 0.875rem;
+    line-height: 1.6;
+    max-width: 28rem;
+    opacity: 0.65;
+}
+
+.bz-footer__contact {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    opacity: 0.65;
+}
+
+.bz-footer__contact-phone {
+    padding-top: 0.25rem;
+}
+
+.bz-footer__bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(247,245,240,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    opacity: 0.45;
+}
+
+@media (min-width: 768px) {
+    .bz-footer__bottom {
+        flex-direction: row;
+    }
+}

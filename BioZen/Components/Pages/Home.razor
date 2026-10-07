@@ -1,7 +1,98 @@
-﻿@page "/"
+@page "/"
 
-<PageTitle>Inicio</PageTitle>
+<PageTitle>BIO·ZEN — Podología Avanzada</PageTitle>
 
-<h1>Hello, world!</h1>
+<div>
+    <section class="bz-hero">
+        <div class="bz-hero__bg"></div>
+        <div class="bz-hero__shape"></div>
+        <div class="bz-hero__image-wrap">
+            <img class="bz-hero__image" src="images/Inicio/PiesCaminandoOrilla.jpg" alt="Pies caminando por la orilla" />
+        </div>
 
-Welcome to your new app.
+        <div class="bz-hero__inner">
+            <div>
+                <p class="bz-eyebrow">Podología Avanzada</p>
+                <h1 class="bz-hero__title">Un paso hacia tu mejor versión</h1>
+                <p class="bz-hero__lead">
+                    Cuidamos de tus pies como se merecen, con un trato cercano y una atención adaptada a ti. Porque sentirte bien al caminar también es cuidar de tu bienestar.</p>
+                <div class="bz-hero__actions">
+                    <a href="/contacto" class="bz-btn-primary">Reservar cita</a>
+                    <a href="/servicios" class="bz-btn-outline">Ver servicios</a>
+                </div>
+                <div class="bz-hero__stats">
+                    @foreach (var stat in Stats)
+                    {
+                        <div>
+                            <p class="bz-hero__stat-num">@stat.Number</p>
+                            <p class="bz-hero__stat-label">@stat.Label</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="bz-section bz-section--card">
+        <div class="bz-section__inner">
+            <div class="bz-section__header">
+                <p class="bz-eyebrow">Nuestras especialidades</p>
+                <h2 class="bz-section__title">Salud. Movimiento. Bienestar.</h2>
+            </div>
+            <div class="bz-services-grid">
+                @foreach (var s in Services)
+                {
+                    <a href="/servicios" class="bz-service-card">
+                        <span class="bz-service-card__icon">@s.Icon</span>
+                        <h3 class="bz-service-card__title">@s.Title</h3>
+                        <p class="bz-service-card__desc">@s.Desc</p>
+                        <div class="bz-service-card__more">Saber más<span>→</span></div>
+                    </a>
+                }
+            </div>
+        </div>
+    </section>
+
+    <section class="bz-about">
+        <div class="bz-about__inner">
+            <div class="bz-about__image-wrap">
+                <div class="bz-about__image-bg"></div>
+                <img class="bz-about__image" src="images/Inicio/PiesSobreUnaRoca.jpg" alt="Pies apoyados en una roca" />
+            </div>
+            <div>
+                <p class="bz-eyebrow">Nuestra filosofía</p>
+                <h2 class="bz-about__title">La salud empieza por los pies</h2>
+                <p class="bz-about__text">En BIOZEN creemos que tus pies son la base de tu bienestar general. Por eso apostamos por una atención cercana y personalizada, escuchando tus necesidades y buscando siempre la mejor forma de cuidar de tus pies.</p>
+                <p class="bz-about__text">Nuestro objetivo es que te sientas acompañado y en buenas manos, ofreciendo un trato humano y profesional en cada visita.</p>
+                <a href="/nosotros" class="bz-link-arrow">Conoce al equipo <span>→</span></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="bz-cta-banner">
+        <div class="bz-cta-banner__inner">
+            <h2 class="bz-cta-banner__title">¿Listo para dar el primer paso?</h2>
+            <p class="bz-cta-banner__lead">Reserva tu primera consulta y conócenos.</p>
+            <a href="/contacto" class="bz-cta-banner__btn">Reservar cita</a>
+        </div>
+    </section>
+</div>
+
+@code {
+    private sealed record Stat(string Number, string Label);
+    private sealed record Service(string Icon, string Title, string Desc);
+
+    private static readonly Stat[] Stats =
+    [
+        new("x", "Años de experiencia"),
+        new("4.9★", "Valoración"),
+    ];
+
+    private static readonly Service[] Services =
+    [
+        new("", "Podología general", "Diagnóstico y tratamiento de las afecciones del pie. Cuidado personalizado y prevención para mantener tus pies sanos."),
+        new("", "Podología infantil", "Cuidado de los pies para los más peques. Revisamos su desarrollo y prevenimos posibles problemas desde sus primeros pasos."),
+        new("", "Podología deportiva", "Cuida tus pies y mejora tu rendimiento. Prevención y tratamiento de molestias para disfrutar del deporte sin límites."),
+        new("", "Rehabilitación funcional del pie", "Recupera la movilidad y funcionalidad de tus pies. Tratamientos personalizados para aliviar molestias y mejorar cada paso."),
+    ];
+}

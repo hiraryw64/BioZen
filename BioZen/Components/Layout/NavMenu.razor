@@ -1,102 +1,54 @@
-﻿@implements IDisposable
-
 @inject NavigationManager NavigationManager
 
-<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">
-            <img src="images/logo-bio-zen.svg" alt="BioZen" />
+<header class="bz-navbar">
+    <div class="bz-navbar__inner">
+        <a href="/" class="bz-navbar__logo" aria-label="BIO-ZEN Inicio">
+            <img src="images/logo-bio-zen.svg" alt="Logo BIO-ZEN" height="44" />
         </a>
 
-        <input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+        <nav class="bz-navbar__links">
+            @foreach (var link in NavLinks)
+            {
+                <a href="@link.Href" class="bz-navbar__link @(IsActive(link.Href) ? "bz-navbar__link--active" : "")">@link.Label</a>
+            }
+            <a href="/contacto" class="bz-navbar__cta">Reservar cita</a>
+        </nav>
 
-        <div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-            <nav class="nav">
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Inicio
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="weather">
-                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="auth">
-                        <span class="bi bi-lock-nav-menu" aria-hidden="true"></span> Auth Required
-                    </NavLink>
-                </div>
-
-                <div class="nav-item-end">
-                    <div class="nav-item px-3">
-                        <a class="nav-link" href="https://learn.microsoft.com/aspnet/core/" target="_blank">
-                            About
-                        </a>
-                    </div>
-
-                    <AuthorizeView>
-                        <Authorized>
-                            <div class="nav-item px-3">
-                                <NavLink class="nav-link" href="Account/Manage">
-                                    <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @context.User.Identity?.Name
-                                </NavLink>
-                            </div>
-                            <div class="nav-item px-3">
-                                <form action="Account/Logout" method="post">
-                                    <AntiforgeryToken />
-                                    <input type="hidden" name="ReturnUrl" value="@currentUrl" />
-                                    <button type="submit" class="nav-link">
-                                        <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
-                                    </button>
-                                </form>
-                            </div>
-                        </Authorized>
-                        <NotAuthorized>
-                            <div class="nav-item px-3">
-                                <NavLink class="nav-link" href="Account/Register">
-                                    <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
-                                </NavLink>
-                            </div>
-                            <div class="nav-item px-3">
-                                <NavLink class="nav-link" href="Account/Login">
-                                    <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
-                                </NavLink>
-                            </div>
-                        </NotAuthorized>
-                    </AuthorizeView>
-                </div>
-            </nav>
-        </div>
+        <button type="button" class="bz-navbar__burger" aria-label="Abrir menú"
+                aria-expanded="false" aria-controls="bz-mobile-menu">
+            <span class="bz-navbar__burger-bar"></span>
+            <span class="bz-navbar__burger-bar"></span>
+            <span class="bz-navbar__burger-bar"></span>
+        </button>
     </div>
-</div>
+
+    <div id="bz-mobile-menu" class="bz-navbar__mobile">
+        @foreach (var link in NavLinks)
+        {
+            <a href="@link.Href" class="bz-navbar__mobile-link @(IsActive(link.Href) ? "bz-navbar__mobile-link--active" : "")">@link.Label</a>
+        }
+        <a href="/contacto" class="bz-navbar__mobile-cta">Reservar cita</a>
+    </div>
+</header>
 
 @code {
-    private string? currentUrl;
+    private string? _currentPath;
+
+    private sealed record NavLinkItem(string Href, string Label);
+
+    private static readonly NavLinkItem[] NavLinks =
+    [
+        new("/", "Inicio"),
+        new("/servicios", "Servicios"),
+        new("/nosotros", "Nosotros"),
+        new("/blog", "Blog"),
+        new("/contacto", "Contacto"),
+    ];
 
     protected override void OnInitialized()
     {
-        currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-        NavigationManager.LocationChanged += OnLocationChanged;
+        _currentPath = "/" + NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
     }
 
-    private void OnLocationChanged(object? sender, LocationChangedEventArgs e)
-    {
-        currentUrl = NavigationManager.ToBaseRelativePath(e.Location);
-        StateHasChanged();
-    }
-
-    public void Dispose()
-    {
-        NavigationManager.LocationChanged -= OnLocationChanged;
-    }
+    private bool IsActive(string href) => _currentPath == href;
 }
-

@@ -1,0 +1,103 @@
+@page "/contacto"
+
+<PageTitle>Contacto BIO-ZEN</PageTitle>
+
+<div>
+    <div class="bz-page-hero">
+        <p class="bz-eyebrow">Cita previa</p>
+        <h1 class="bz-page-hero__title">Contacto</h1>
+    </div>
+
+    <div class="bz-container bz-contact">
+        <div>
+            <h2 class="bz-contact__heading">Estamos aquí para ti</h2>
+
+            <div class="bz-contact-info">
+                @foreach (var item in ContactItems)
+                {
+                    <div class="bz-contact-info__row">
+                        <div class="bz-contact-info__icon">✦</div>
+                        <div>
+                            <p class="bz-eyebrow bz-contact-info__label">@item.Label</p>
+                            @foreach (var line in item.Lines)
+                            {
+                                <p class="bz-contact-info__value">@line</p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="bz-contact-image">
+                <img src="images/ImagenContacto.jpg" alt="Maquetas anatómicas de pie junto a una tarjeta de BIO-ZEN Narón" />
+            </div>
+        </div>
+
+        <div>
+            @if (_sent)
+            {
+                <div class="bz-contact-sent">
+                    <div class="bz-contact-sent__icon">✓</div>
+                    <h3 class="bz-contact-sent__title">¡Solicitud enviada!</h3>
+                    <p class="bz-contact-sent__text">Nos pondremos en contacto contigo para confirmar tu cita.</p>
+                    <button type="button" class="bz-link-arrow" @onclick="() => _sent = false">Enviar otra consulta</button>
+                </div>
+            }
+            else
+            {
+                <form class="bz-contact-form" @onsubmit="HandleSubmit">
+                    <div>
+                        <label class="bz-contact-form__label">Nombre completo</label>
+                        <input type="text" class="bz-contact-form__input" placeholder="Ana García López" required @bind="_name" />
+                    </div>
+                    <div>
+                        <label class="bz-contact-form__label">Correo electrónico</label>
+                        <input type="email" class="bz-contact-form__input" placeholder="ana@email.com" required @bind="_email" />
+                    </div>
+                    <div>
+                        <label class="bz-contact-form__label">Teléfono</label>
+                        <input type="tel" class="bz-contact-form__input" placeholder="600 123 456" required @bind="_phone" />
+                    </div>
+                    <div>
+                        <label class="bz-contact-form__label">Servicio de interés</label>
+                        <select class="bz-contact-form__input" @bind="_service">
+                            <option value="">Podología General</option>
+                            <option>Biomecánica y Estudio de la Marcha</option>
+                            <option>Tratamiento de Uñas Patológicas</option>
+                            <option>Podología Estética</option>
+                            <option>Reflexología Podal</option>
+                            <option>Ortesis y Plantillas a Medida</option>
+                            <option>Primera consulta / Valoración</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="bz-contact-form__label">Mensaje</label>
+                        <textarea rows="4" class="bz-contact-form__input bz-contact-form__textarea" placeholder="Cuéntanos brevemente tu consulta o el motivo de tu visita." @bind="_message"></textarea>
+                    </div>
+                    <button type="submit" class="bz-btn-primary bz-contact-form__submit">Solicitar cita</button>
+                </form>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+    private sealed record ContactItem(string Label, string[] Lines);
+
+    private static readonly ContactItem[] ContactItems =
+    [
+        new("Dirección", ["Rosalía de Castro, 40 Bajo", "15570 Narón (A Coruña)"]),
+        new("Teléfono", ["(+34) 635 66 91 40"]),
+        new("Email", ["info@bio-zennaron.es"]),
+        new("Horario", ["Lunes - Viernes: 9:00 - 20:00", "Sábados: 10:00 - 14:00"]),
+    ];
+
+    private string _name = "";
+    private string _email = "";
+    private string _phone = "";
+    private string _service = "";
+    private string _message = "";
+    private bool _sent;
+
+    private void HandleSubmit() => _sent = true;
+}

@@ -95,7 +95,7 @@
 }
 
 .bz-navbar--open .bz-navbar__burger-bar:nth-child(1) {
-    transform: rotate(45deg) translate(3px, 5px);
+    transform: translateY(8px) rotate(45deg);
 }
 
 .bz-navbar--open .bz-navbar__burger-bar:nth-child(2) {
@@ -103,7 +103,7 @@
 }
 
 .bz-navbar--open .bz-navbar__burger-bar:nth-child(3) {
-    transform: rotate(-45deg) translate(3px, -5px);
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 .bz-navbar__mobile {

@@ -151,23 +151,52 @@ body {
 
 .bz-cta-card {
     border-radius: 1.5rem;
-    padding: 3rem;
+    padding: 2rem 1.5rem;
     text-align: center;
     background: var(--primary);
 }
 
+@media (min-width: 768px) {
+    .bz-cta-card {
+        padding: 2rem 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2rem;
+        text-align: left;
+    }
+}
+
 .bz-cta-card__title {
     font-family: var(--font-serif);
-    font-size: 1.875rem;
-    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
     color: var(--primary-foreground);
 }
 
+@media (min-width: 768px) {
+    .bz-cta-card__title {
+        font-size: 1.875rem;
+    }
+}
+
 .bz-cta-card__lead {
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     opacity: 0.8;
     font-size: 0.875rem;
     color: var(--primary-foreground);
+}
+
+@media (min-width: 768px) {
+    .bz-cta-card__lead {
+        margin-bottom: 0;
+    }
+}
+
+.bz-cta-card__btn {
+    background: var(--primary-foreground);
+    color: var(--primary);
+    flex-shrink: 0;
 }
 
 a, .btn-link {
@@ -225,4 +254,67 @@ h1:focus {
 
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
+}
+
+.bz-carousel {
+    position: relative;
+}
+
+@media (max-width: 639.98px) {
+    .bz-carousel {
+        padding: 0 1.5rem;
+    }
+}
+
+.bz-carousel__track {
+    --bz-visible: 1;
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: 0.5rem 0;
+    scrollbar-width: none;
+}
+
+.bz-carousel__track::-webkit-scrollbar {
+    display: none;
+}
+
+.bz-carousel__track > * {
+    flex: 0 0 calc((100% - (var(--bz-visible) - 1) * 1.5rem) / var(--bz-visible));
+    scroll-snap-align: start;
+}
+
+.bz-carousel__btn {
+    position: absolute;
+    top: 50%;
+    z-index: 1;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    border: 1px solid var(--border);
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.bz-carousel__btn--prev {
+    left: -1.25rem;
+}
+
+.bz-carousel__btn--next {
+    right: -1.25rem;
+}
+
+@media (min-width: 1280px) {
+    .bz-carousel__btn--prev {
+        left: -3.75rem;
+    }
+
+    .bz-carousel__btn--next {
+        right: -3.75rem;
+    }
 }

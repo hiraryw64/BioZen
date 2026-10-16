@@ -1,5 +1,5 @@
 .bz-story {
-    padding: 5rem 1.5rem;
+    padding: 5rem 1.5rem 2.5rem;
     display: grid;
     grid-template-areas:
         "title"
@@ -34,6 +34,10 @@
     line-height: 1.7;
     margin-bottom: 1.25rem;
     color: var(--muted-foreground);
+}
+
+.bz-story__text:last-child {
+    margin-bottom: 0;
 }
 
 .bz-story__body {
@@ -72,6 +76,24 @@
     margin: 0 auto;
     aspect-ratio: 3 / 4;
     object-fit: cover;
+}
+
+.bz-gallery {
+    padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .bz-gallery .bz-carousel__track {
+        --bz-visible: 2;
+    }
+}
+
+.bz-gallery__image {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: 1rem;
 }
 
 .bz-values {

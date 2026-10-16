@@ -1,0 +1,52 @@
+@page "/servicios"
+
+<PageTitle>Servicios BIO-ZEN</PageTitle>
+
+<div>
+    <div class="bz-page-hero">
+        <p class="bz-eyebrow">Servicios</p>
+        <h1 class="bz-page-hero__title">Nuestras especialidades</h1>
+        <p class="bz-page-hero__lead">Ofrecemos una gama muy variada de tratamientos podológicos, desde la clínica especializada hasta la estética y el bienestar integral del pie.</p>
+    </div>
+
+    <div class="bz-container bz-services-page">
+        <div class="bz-service-cards">
+            @foreach (var s in Services)
+            {
+                <div class="bz-service-detail-card">
+                    <div class="bz-service-detail-card__image">
+                        <img src="@s.Img" alt="@s.Title" />
+                    </div>
+                    <div class="bz-service-detail-card__body">
+                        <h3 class="bz-service-detail-card__title">@s.Title</h3>
+                        <p class="bz-service-detail-card__desc">@s.Desc</p>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="bz-cta-card">
+            <div>
+                <h3 class="bz-cta-card__title">¿No encuentras lo que buscas?</h3>
+                <p class="bz-cta-card__lead">Consúltanos. Personalizamos cada tratamiento según tus necesidades.</p>
+            </div>
+            <a href="/contacto" class="bz-btn-primary bz-cta-card__btn">Contactar</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private sealed record ServiceItem(string Title, string Desc, string Img);
+
+    private static readonly ServiceItem[] Services =
+    [
+        new("Estudio de la pisada", "Analizamos cómo apoyas los pies y cómo distribuyes el peso al caminar para detectar alteraciones y valorar posibles soluciones.", "images/ImagenContacto.jpg"),
+        new("Biomecánica", "Estudiamos el movimiento y el funcionamiento de los pies y las extremidades inferiores para identificar desequilibrios y mejorar la movilidad.", "images/ImagenContacto.jpg"),
+        new("Podología infantil", "Evaluamos el desarrollo de los pies de los más pequeños para detectar posibles alteraciones, prevenir problemas y acompañar su crecimiento.", "images/ImagenContacto.jpg"),
+        new("Podología deportiva", "Cuidamos los pies de los deportistas para prevenir lesiones, tratar molestias y favorecer un mejor rendimiento y una recuperación adecuada.", "images/ImagenContacto.jpg"),
+        new("Rehabilitación funcional del pie y tobillo", "Trabajamos para recuperar la movilidad, la fuerza y la estabilidad del pie y el tobillo tras una lesión o una limitación funcional.", "images/ImagenContacto.jpg"),
+        new("Terapias físicas aplicadas", "Aplicamos técnicas físicas adaptadas a cada caso para aliviar el dolor, mejorar la función de los tejidos y favorecer la recuperación.", "images/ImagenContacto.jpg"),
+        new("Ortopodología", "Diseñamos y adaptamos soluciones como plantillas y otros dispositivos para mejorar el apoyo, corregir alteraciones y aliviar molestias.", "images/ImagenContacto.jpg"),
+        new("Tratamiento integral del pie", "Abordamos la salud de tus pies de forma global, combinando valoración, prevención y tratamientos personalizados según tus necesidades.", "images/ImagenContacto.jpg"),
+    ];
+}

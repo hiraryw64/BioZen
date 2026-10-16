@@ -114,36 +114,6 @@
     color: var(--muted-foreground);
 }
 
-.bz-carousel {
-    position: relative;
-}
-
-@media (max-width: 639.98px) {
-    .bz-carousel {
-        padding: 0 1.5rem;
-    }
-}
-
-.bz-carousel__track {
-    --bz-visible: 1;
-    display: flex;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    padding: 0.5rem 0;
-    scrollbar-width: none;
-}
-
-.bz-carousel__track::-webkit-scrollbar {
-    display: none;
-}
-
-.bz-carousel__track > .bz-service-card {
-    flex: 0 0 calc((100% - (var(--bz-visible) - 1) * 1.5rem) / var(--bz-visible));
-    scroll-snap-align: start;
-}
-
 @media (min-width: 640px) {
     .bz-carousel__track {
         --bz-visible: 2;
@@ -153,39 +123,6 @@
 @media (min-width: 1024px) {
     .bz-carousel__track {
         --bz-visible: 4;
-    }
-}
-
-.bz-carousel__btn {
-    position: absolute;
-    top: 50%;
-    z-index: 1;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 9999px;
-    border: 1px solid var(--border);
-    background: var(--background);
-    color: var(--foreground);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-    cursor: pointer;
-    transform: translateY(-50%);
-}
-
-.bz-carousel__btn--prev {
-    left: -1.25rem;
-}
-
-.bz-carousel__btn--next {
-    right: -1.25rem;
-}
-
-@media (min-width: 1280px) {
-    .bz-carousel__btn--prev {
-        left: -3.75rem;
-    }
-
-    .bz-carousel__btn--next {
-        right: -3.75rem;
     }
 }
 

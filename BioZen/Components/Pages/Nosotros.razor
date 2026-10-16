@@ -21,6 +21,19 @@
         </div>
     </section>
 
+    <section class="bz-container bz-gallery">
+        <div class="bz-carousel">
+            <button type="button" class="bz-carousel__btn bz-carousel__btn--prev" aria-label="Foto anterior">←</button>
+            <div class="bz-carousel__track">
+                @for (var i = 1; i <= 4; i++)
+                {
+                    <img class="bz-gallery__image" src="images/Nosotros/Clinica@(i).jpg" alt="Clínica BIO-ZEN, foto @i" loading="lazy" />
+                }
+            </div>
+            <button type="button" class="bz-carousel__btn bz-carousel__btn--next" aria-label="Foto siguiente">→</button>
+        </div>
+    </section>
+
     <section class="bz-values">
         <div class="bz-values__inner">
             @foreach (var v in Values)

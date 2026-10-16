@@ -1,0 +1,77 @@
+@page "/nosotros"
+
+<PageTitle>Nosotros BIO-ZEN</PageTitle>
+
+<div>
+    <div class="bz-page-hero">
+        <p class="bz-eyebrow">Quiénes somos</p>
+        <h1 class="bz-page-hero__title">Nosotras, nuestra clínica</h1>
+    </div>
+
+    <section class="bz-container bz-story">
+        <h2 class="bz-story__title">Mi pasión, mi oficio</h2>
+        <div class="bz-story__body">
+            <p class="bz-story__text">¡Hola! Soy Virginia Rodríguez, podóloga de vocación y una enamorada de todo lo que tiene que ver con el movimiento y la salud de los pies. Llevo más de diez años acompañando a personas de todas las edades a caminar, correr y vivir sin dolor, porque creo que unos pies sanos pueden cambiar por completo la calidad de vida.</p>
+            <p class="bz-story__text">En 2017 di el paso de cumplir uno de mis mayores sueños: fundar mi propia clínica, BIO-ZEN Podología, un espacio donde cada paciente recibe un trato cercano, personalizado y basado en la evidencia científica.</p>
+            <p class="bz-story__text">Mis grandes pasiones son la podología deportiva e infantil, dos áreas en las que disfruto ayudando tanto a deportistas que quieren mejorar su rendimiento o recuperarse de una lesión como a los más pequeños para favorecer un correcto desarrollo desde sus primeros pasos.</p>
+            <p class="bz-story__text">Soy una persona activa, dinámica y optimista. Me encanta disfrutar del aire libre, hacer deporte y seguir formándome, porque para mí la podología no es solo una profesión: es una forma de ayudar a las personas a moverse mejor y vivir sin limitaciones.</p>
+        </div>
+        <div class="bz-story__image-wrap">
+            <img class="bz-story__image" src="images/Nosotros/Virginia.jpg" alt="Virginia" />
+        </div>
+    </section>
+
+    <section class="bz-values">
+        <div class="bz-values__inner">
+            @foreach (var v in Values)
+            {
+                <div>
+                    <h3 class="bz-values__title">@v.Title</h3>
+                    <p class="bz-values__desc">@v.Desc</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="bz-container bz-team">
+        <h2 class="bz-team__heading">El equipo</h2>
+        <div class="bz-team__grid">
+            @foreach (var m in Team)
+            {
+                <div class="bz-team__member">
+                    <div class="bz-team__photo">
+                        <img src="@m.Img" alt="@m.Name" />
+                    </div>
+                    <h3 class="bz-team__name">@m.Name</h3>
+                    <p class="bz-team__role">@m.Role</p>
+                    @foreach (var paragraph in m.Bio)
+                    {
+                        <p class="bz-team__bio">@paragraph</p>
+                    }
+                </div>
+            }
+        </div>
+    </section>
+</div>
+
+@code {
+    private sealed record Value(string Title, string Desc);
+    private sealed record TeamMember(string Name, string Role, string[] Bio, string Img);
+
+    private static readonly Value[] Values =
+    [
+        new("Cercanía", "Cada persona es única y merece una atención cercana y adaptada a sus necesidades."),
+        new("Profesionalidad", "Cuidamos de tus pies con conocimiento, formación continua y tratamientos basados en la evidencia científica."),
+        new("Pasión", "Nos encanta ayudar a las personas a moverse mejor, disfrutar del deporte y vivir con menos limitaciones."),
+    ];
+
+    private static readonly TeamMember[] Team =
+    [
+        new("Tania Vilela Peñas", "Estudiante de 4.º curso de podología",
+            [
+                "Me considero una persona cercana, responsable y con muchas ganas de seguir aprendiendo y creciendo como futura podóloga, siempre buscando ofrecer una atención individualizada y adaptada a las necesidades de cada paciente.",
+                "Mis áreas favoritas son biomecánica, el estudio de la marcha y sobre todo la podología infantil, un área que me apasiona especialmente por la importancia de acompañar y cuidar el desarrollo de los más pequeños.",
+            ],
+            "images/Nosotros/Tania.jpeg"),
+    ];
+}

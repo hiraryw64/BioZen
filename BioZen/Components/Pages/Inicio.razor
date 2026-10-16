@@ -39,16 +39,20 @@
                 <p class="bz-eyebrow">Nuestras especialidades</p>
                 <h2 class="bz-section__title">Salud. Movimiento. Bienestar.</h2>
             </div>
-            <div class="bz-services-grid">
-                @foreach (var s in Services)
-                {
-                    <a href="/servicios" class="bz-service-card">
-                        <span class="bz-service-card__icon">@s.Icon</span>
-                        <h3 class="bz-service-card__title">@s.Title</h3>
-                        <p class="bz-service-card__desc">@s.Desc</p>
-                        <div class="bz-service-card__more">Saber más<span>→</span></div>
-                    </a>
-                }
+            <div class="bz-carousel">
+                <button type="button" class="bz-carousel__btn bz-carousel__btn--prev" aria-label="Servicios anteriores">←</button>
+                <div class="bz-carousel__track">
+                    @foreach (var s in Services)
+                    {
+                        <a href="/servicios" class="bz-service-card">
+                            <span class="bz-service-card__icon">@s.Icon</span>
+                            <h3 class="bz-service-card__title">@s.Title</h3>
+                            <p class="bz-service-card__desc">@s.Desc</p>
+                            <div class="bz-service-card__more">Saber más<span>→</span></div>
+                        </a>
+                    }
+                </div>
+                <button type="button" class="bz-carousel__btn bz-carousel__btn--next" aria-label="Servicios siguientes">→</button>
             </div>
         </div>
     </section>
@@ -81,18 +85,23 @@
 @code {
     private sealed record Stat(string Number, string Label);
     private sealed record Service(string Icon, string Title, string Desc);
+    private static int Experiencia = DateTime.Now.Year - 2017;
 
     private static readonly Stat[] Stats =
     [
-        new("x", "Años de experiencia"),
-        new("4.9★", "Valoración"),
+        new(Experiencia.ToString(), "Años cuidándote"),
+        new("4.9 ★", "Valoración"),
     ];
 
     private static readonly Service[] Services =
     [
-        new("", "Podología general", "Diagnóstico y tratamiento de las afecciones del pie. Cuidado personalizado y prevención para mantener tus pies sanos."),
-        new("", "Podología infantil", "Cuidado de los pies para los más peques. Revisamos su desarrollo y prevenimos posibles problemas desde sus primeros pasos."),
-        new("", "Podología deportiva", "Cuida tus pies y mejora tu rendimiento. Prevención y tratamiento de molestias para disfrutar del deporte sin límites."),
-        new("", "Rehabilitación funcional del pie", "Recupera la movilidad y funcionalidad de tus pies. Tratamientos personalizados para aliviar molestias y mejorar cada paso."),
+        new("", "Estudio de la pisada", "Analizamos tu forma de caminar y apoyar los pies para detectar alteraciones y mejorar tu comodidad al moverte."),
+        new("", "Biomecánica", "Estudiamos el movimiento de tu cuerpo para identificar desequilibrios y mejorar la funcionalidad de tus pies al caminar."),
+        new("", "Podología infantil", "Cuidamos de los pies de los más peques. Revisamos su desarrollo y prevenimos posibles problemas desde sus primeros pasos."),
+        new("", "Podología deportiva", "Atendemos tus pies para mejorar tu rendimiento deportivo, prevenir lesiones y ayudarte a disfrutar del ejercicio sin molestias."),
+        new("", "Rehabilitación funcional del pie y tobillo", "Te ayudamos a recuperar la movilidad y funcionalidad de tus pies con tratamientos personalizados."),
+        new("", "Terapias físicas aplicadas", "Aplicamos técnicas físicas para aliviar el dolor, mejorar la movilidad y favorecer la recuperación de tus pies."),
+        new("", "Ortopodología", "Diseñamos soluciones personalizadas para corregir alteraciones del pie, mejorar el apoyo y facilitar una pisada más cómoda."),
+        new("", "Tratamiento integral del pie", "Cuidamos la salud de tus pies de forma global, combinando prevención y tratamientos adaptados a tus necesidades."),
     ];
 }

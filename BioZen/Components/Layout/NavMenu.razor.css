@@ -16,7 +16,7 @@
     height: 4rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.5rem;
 }
 
 .bz-navbar__logo {
@@ -24,6 +24,7 @@
     align-items: center;
     gap: 0.5rem;
     text-decoration: none;
+    margin-right: auto;
 }
 
 .bz-navbar__links {
@@ -84,6 +85,31 @@
 
 .bz-navbar__cta:hover {
     opacity: 0.9;
+}
+
+.bz-navbar__social {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+@media (min-width: 768px) {
+    .bz-navbar__social {
+        margin-left: 0.5rem;
+    }
+}
+
+.bz-navbar__social-link {
+    display: flex;
+    padding: 0.5rem;
+    border-radius: 9999px;
+    color: var(--muted-foreground);
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.bz-navbar__social-link:hover {
+    color: var(--primary);
+    background: var(--muted);
 }
 
 .bz-navbar__burger-bar {
